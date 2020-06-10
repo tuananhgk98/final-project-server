@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb+srv://coderx:popacdmc@cluster0-8gqhf.azure.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect('mongodb://localhost:27017/final-project', {
   useNewUrlParser: true,
-  useUnifiedTopology: true 
+  useUnifiedTopology: true,
+  useCreateIndex: true,
 }).then(() => {
-  console.log("Successfully connected to the database");    
+  console.log("Successfully connected to the database");
 }).catch(err => {
   console.log('Could not connect to the database. Exiting now...', err);
   process.exit();

@@ -3,8 +3,6 @@
 var course = require('../models/course.model');
 
 
-
-
 module.exports.getAllCourse = function (req, res) {
     course.find(function (err, data) {
         if (err) return console.log(err);
@@ -15,6 +13,8 @@ module.exports.getAllCourse = function (req, res) {
         });
     });
 };
+
+
 
 
 
