@@ -2,7 +2,9 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const bodyParser = require('body-parser');
+const cors = require('cors');
 app.use(bodyParser.json());
+app.use(cors());
 
 
 app.use(function (req, res, next) {
@@ -14,9 +16,12 @@ app.use(function (req, res, next) {
 
 var userRoute = require('./routes/user.route');
 var loginRoute = require('./routes/login.route');
+var courseRoute = require('./routes/course.route')
 // var mailRoute = require('./routes/mail.route');
+app.use('/course', courseRoute);
 app.use('/user', userRoute);
 app.use('/login', loginRoute);
+
 // app.use('/mail', mailRoute);
 
 // const upload = require('./multer');

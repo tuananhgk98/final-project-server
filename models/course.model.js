@@ -6,10 +6,9 @@ mongoose.Promise = global.Promise;
 var course = new Schema({
     name: String,
     description: String,
-    video: String,
-    status : Number,
+    tag : String,
+    lessonCount : Number,
     createdOn: String,
-    updatedOn: String,
 
 }, { collection: 'Course' });
 

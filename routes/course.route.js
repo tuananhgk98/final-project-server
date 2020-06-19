@@ -4,6 +4,8 @@ var courseController = require('../controllers/course.controller');
 var cors = require('cors');
 router.options('/', cors());
 
-router.get('/list', cors(), courseController.getAllCourse);
-
+router.get('/', cors(), courseController.getAllCourse);
+router.post('/', cors(), courseController.create);
+router.delete('/:courseId', cors(), courseController.delete);
+router.get('/lessonOfCourse/:courseId', cors(), courseController.getLessonOfCourse);
 module.exports = router;
