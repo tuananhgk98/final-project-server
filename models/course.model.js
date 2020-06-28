@@ -5,11 +5,9 @@ mongoose.Promise = global.Promise;
 
 var course = new Schema({
     name: String,
-    description: String,
     tag : String,
     lessonCount : Number,
-    createdOn: String,
-
+    content : String
 }, { collection: 'Course' });
 
 module.exports = mongoose.model('Course', course);

@@ -5,11 +5,12 @@ mongoose.Promise = global.Promise;
 
 var lesson = new Schema({
     name: String,
-    courseId : String,
-    description: String,
-    exercise : Array,
-    createdOn : String,
-    UpdatedOn : String
+    courseId: String,
+    content: String,
+    exercise: Array,
+    youtubeUrl: String,
+    exNum : Number,
+    num : Number
 
 }, { collection: 'Lesson' });
 

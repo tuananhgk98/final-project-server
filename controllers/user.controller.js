@@ -10,3 +10,14 @@ module.exports.list = (req, res) => {
         });
     });
 }
+
+module.exports.get = function (req, res) {
+    user.findById(req.params.userId, function (err, data) {
+        if (err) console.log(err)
+        res.status(200).send({
+            ok: true,
+            msg: 'Get user successfully',
+            data: data
+        })
+    });
+}

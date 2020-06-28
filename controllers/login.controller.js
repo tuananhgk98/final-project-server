@@ -39,7 +39,11 @@ module.exports.register = (req, res) => {
                 name: req.body.name,
                 imageUrl: req.body.imageUrl || 'https://astro.ca/wp-content/themes/astro/images/close-btn.svg',
                 userName: req.body.userName,
-                pwd: req.body.pwd || '12345678'
+                pwd: req.body.pwd || '12345678',
+                learned : {
+                    course : [],
+                    lesson : []
+                }
             }
             user.create(body, (err, data) => {
                 if (err) console.log(err);
