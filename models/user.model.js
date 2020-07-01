@@ -6,7 +6,9 @@ var user = new Schema({
     userName: String,
     pwd: String,
     imageUrl: String,
-    learned : Object
+    learned : Object,
+    email: String,
+    phone : Number
 }, { collection: 'User' });
 
 module.exports = mongoose.model('User', user);

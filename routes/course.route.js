@@ -6,6 +6,7 @@ router.options('/', cors());
 
 router.get('/', cors(), courseController.getAllCourse);
 router.put('/:courseId', cors(), courseController.update);
+router.put('/lesson/:lessonId', cors(), courseController.updateLesson);
 router.post('/', cors(), courseController.create);
 router.delete('/:courseId', cors(), courseController.delete);
 router.delete('/lesson/:lessonId', cors(), courseController.deleteLesson);

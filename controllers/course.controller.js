@@ -47,27 +47,44 @@ module.exports.createLesson = function (req, res) {
         name: req.body.name || '',
         content: req.body.content || '',
         exNum: 0,
-        num: null,
         youtubeUrl: req.body.youtubeUrl || '',
         courseId: req.body.courseId,
         exercise: []
     };
-    course.findById(req.body.courseId, function (err, data) {
-        course.findByIdAndUpdate(req.body.courseId, { lessonCount: data.lessonCount + 1 }, { new: true }, function (err, model) {
+
+    course.findById(req.body.courseId, (err, data) => {
+        // course.findByIdAndUpdate(req.body.courseId, { lessonCount: data.lessonCount + 1 }, { new: true }, (err, model) => {
+        //     if (err) console.log(err);
+        //     body.num = data.lessonCount + 1;
+        // });
+        data.lessonCount += 1;
+        body.num = data.lessonCount - 1;
+        lesson.create(body, (err, data1) => {
             if (err) console.log(err);
-            body.num = data.lessonCount + 1;
             console.log(body);
+            res.status(200).send({
+                ok: true,
+                msg: 'Successfully',
+                data: data1
+            });
         });
+        data.save();
     });
 
-    lesson.create(body, (err, data) => {
-        if (err) console.log(err);
-        res.status(200).send({
-            ok: true,
-            msg: 'Successfully',
-            data: data
-        });
-    });
+
+}
+
+module.exports.updateLesson = function (req, res) {
+    lesson.findByIdAndUpdate(
+        req.params.lessonId, req.body, { new: true }, function (err, data) {
+            if (err) console.log(err);
+            res.status(200).send({
+                ok: true,
+                msg: 'Success',
+                data: data
+            })
+        }
+    );
 }
 
 module.exports.delete = function (req, res) {
@@ -114,7 +131,22 @@ module.exports.getLessonDetail = function (req, res) {
             data: data
         });
     })
-}
+};
+
+module.exports.createExercise = function (req, res) {
+    lesson.findById(req.params.lessonId, function (err, data){
+        if(err) console.log(err);
+        data.exercise = req.body;
+        data.save();
+        res.status(200).send({
+            ok: true,
+            msg : 'Success',
+            data: data
+        });
+    });
+    
+};
+
 
 
 
