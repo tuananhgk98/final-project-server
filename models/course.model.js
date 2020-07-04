@@ -7,7 +7,8 @@ var course = new Schema({
     name: String,
     tag : String,
     lessonCount : Number,
-    content : String
+    content : String,
+    num : Number
 }, { collection: 'Course' });
 
 module.exports = mongoose.model('Course', course);

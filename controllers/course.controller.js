@@ -21,15 +21,36 @@ module.exports.create = function (req, res) {
         content: req.body.content || '',
         lessonCount: 0,
     };
-    course.create(body, (err, data) => {
-        if (err) console.log(err);
-        res.status(200).send({
-            ok: true,
-            msg: 'create success',
-            data: data
+    course.find(function (err, data){
+        body.num = data.length + 1;
+        course.create(body, (err, data1) => {
+            if (err) console.log(err);
+            res.status(200).send({
+                ok: true,
+                msg: 'create success',
+                data: data1
+            });
         });
     });
+   
 };
+
+module.exports.getCourseAndLesson = function(req, res) {
+course.findById(req.params.courseId, function(err, data){
+    if(err) console.log(err);
+    lesson.find({courseId : data._id}, function(err1, data1){
+        res.status(200).send({
+            ok: true,
+            msg : 'Success',
+            data : {
+                course : data,
+                lesson  : data1
+            }
+        });
+    });
+   
+});
+}
 
 module.exports.update = function (req, res) {
     course.findByIdAndUpdate(req.params.courseId, req.body, { new: true }, function (err, data) {
@@ -136,7 +157,7 @@ module.exports.getLessonDetail = function (req, res) {
 module.exports.createExercise = function (req, res) {
     lesson.findById(req.params.lessonId, function (err, data){
         if(err) console.log(err);
-        data.exercise = req.body;
+        data.exercise.push(...req.body);
         data.save();
         res.status(200).send({
             ok: true,

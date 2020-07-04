@@ -5,7 +5,7 @@ const option = {
     service: 'gmail',
     auth: {
         user: 'anhtuangk98@gmail.com',
-        pass: 'Anhh031198@@'
+        pass: 'rxplkumojkxeotwj'
     }
 };
 var transporter = nodemailer.createTransport(option);
